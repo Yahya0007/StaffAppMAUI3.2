@@ -48,10 +48,10 @@ namespace StaffApp
 #if ANDROID
     new Shiny.Push.FirebaseConfig(
         false, // false to ignore embedded configuration
-        "1:33676796911:android:b23148cba4619915e50c1a", // appid
-        "33676796911", // sender id/project_number
-        "hs-staff-app-maui-3-1", // project_id
-        "AIzaSyA2im9mGEylGc-9nQWZXHiq_BFUStkLQs0" // api_key
+        "Removed", // appid
+        "Removed", // sender id/project_number
+        "Removed", // project_id
+        "Removed" // api_key
     )
 #endif
 );
