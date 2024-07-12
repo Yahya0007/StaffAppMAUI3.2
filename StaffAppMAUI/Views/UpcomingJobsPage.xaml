@@ -1,0 +1,250 @@
+<ContentPage
+    x:Class="StaffApp.Views.UpcomingJobsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:StaffApp.Converter"
+    xmlns:dx="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+    xmlns:dxcore="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:local="clr-namespace:StaffApp"
+    xmlns:local2="clr-namespace:CollectionViewFilteringUI"
+    xmlns:models="clr-namespace:StaffApp.StaffDataService"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:utils="clr-namespace:CollectionViewFilteringUI.Utils"
+    xmlns:viewmodels="clr-namespace:StaffApp.ViewModels"
+    xmlns:views="clr-namespace:StaffApp.Views"
+    x:Name="UpcomingJobsPage1"
+    Title="Upcoming Jobs"
+    ios:Page.UseSafeArea="true"
+    x:DataType="viewmodels:UpcomingJobsViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:VisibilityConverter x:Key="VisibilityConverter" />
+            <converter:GridRowHeightConverter x:Key="GridRowHeightConverter" />
+            <converter:NewRowVisibleConverter x:Key="NewRowVisibleConverter" />
+            <converter:ExistingRowVisibleConverter x:Key="ExistingRowVisibleConverter" />
+            <converter:StripRoleExtension x:Key="StripRoleExtension" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+
+        <utils:EnumToDescriptionConverter x:Key="enumToDesriptionConverter" />
+
+        <DataTemplate x:Key="JobCardTemplate" x:DataType="models:UpcomingJobs">
+            <Border
+                Margin="{OnIdiom Phone='18,6,18,6',
+                                 Tablet='40,10,40,10'}"
+                Stroke="{Binding ItemColour}"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="1">
+
+                <utils:DockLayout RowSpacing="0">
+                    <Grid
+                        Padding="0"
+                        utils:DockLayout.Dock="Top"
+                        ColumnSpacing="0"
+                        HeightRequest="75"
+                        RowSpacing="0">
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width=".4" />
+                                <ColumnDefinition Width="11*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label
+                                    Margin="0,0,0,2"
+                                    FontSize="12"
+                                    HorizontalOptions="Center"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    Text="{Binding EventDate, StringFormat='{0:ddd}'}"
+                                    TextColor="#444444" />
+                                <Label
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    Text="{Binding EventDate, StringFormat='{0:dd}'}"
+                                    TextColor="#444444" />
+                                <Label
+                                    Margin="0,-2,0,0"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    Text="{Binding EventDate, StringFormat='{0:MMM}'}"
+                                    TextColor="#444444" />
+                            </StackLayout>
+                            <BoxView
+                                Grid.Column="1"
+                                Margin="0,1,0,1"
+                                HorizontalOptions="Start"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="2" />
+
+                            <StackLayout
+                                Grid.Column="2"
+                                Margin="2"
+                                HorizontalOptions="FillAndExpand"
+                                Spacing="0"
+                                VerticalOptions="Start">
+                                <Label
+                                    FontSize="14"
+                                    LineBreakMode="WordWrap"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    Text="{Binding Client}"
+                                    TextColor="#444444"
+                                    VerticalOptions="Start" />
+                                <BoxView HeightRequest="1" />
+                                <Label
+                                    FontSize="14"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    TextColor="#444444">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="{Binding JobType, Converter={StaticResource StripRoleExtension}}" />
+                                                <Span Text="   " />
+                                                <Span Text="{Binding StartTime, StringFormat='{0:HH:mm}'}" />
+                                                <Span Text=" - " />
+                                                <Span Text="{Binding EndTime, StringFormat='{0:HH:mm}'}" />
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    Margin="0,2,0,0"
+                                    FontSize="14"
+                                    LineBreakMode="WordWrap"
+                                    Style="{DynamicResource StyleFontMedium}"
+                                    Text="{Binding VenueFirst}"
+                                    TextColor="#444444"
+                                    VerticalOptions="Start" />
+                                <BoxView HeightRequest="1" />
+                            </StackLayout>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={Reference UpcomingJobsPage1}, Path=BindingContext.ItemTapped}"
+                                    CommandParameter="{Binding}"
+                                    NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Border
+                            Margin="0,0,0,0"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            IsEnabled="{Binding IsJobDisabled, Converter={StaticResource InverseBoolConverter}}"
+                            Stroke="{dx:ThemeColor Surface}"
+                            StrokeShape="Ellipse"
+                            StrokeThickness="0"
+                            VerticalOptions="End"
+                            WidthRequest="40">
+
+                            <dxcore:DXImage
+                                Margin="8"
+                                IsEnabled="{Binding IsJobDisabled, Converter={StaticResource InverseBoolConverter}}"
+                                Source="filteringui_like2">
+
+                                <dxcore:DXImage.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsFavorite}"
+                                        TargetType="dxcore:DXImage"
+                                        Value="True">
+                                        <Setter Property="Source" Value="filteringui_like_toggle" />
+                                        <Setter Property="TintColor" Value="#f23c6d" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding IsJobDisabled}"
+                                        TargetType="dxcore:DXImage"
+                                        Value="True">
+                                        <Setter Property="Source" Value="filteringui_like_disabled" />
+                                        <Setter Property="TintColor" Value="{DynamicResource FavoriteIconStrokeColor}" />
+                                    </DataTrigger>
+                                </dxcore:DXImage.Triggers>
+                            </dxcore:DXImage>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={Reference UpcomingJobsPage1}, Path=BindingContext.AddToFavoritesCommand}"
+                                    CommandParameter="{Binding}"
+                                    NumberOfTapsRequired="1" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </Grid>
+                </utils:DockLayout>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="filteringUIFormTemplate">
+            <utils:ScrollViewFix>
+                <VerticalStackLayout>
+                    <dxe:FilterCheckedChipGroupItem FieldName="AppRole" Text="Role" />
+
+                </VerticalStackLayout>
+            </utils:ScrollViewFix>
+
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding Source={Reference UpcomingJobsListView}, Path=Commands.ShowFilteringUIForm}" IconImageSource="filteringui_filter" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <dxe:FilterChipGroup
+            x:Name="filtersChipGroup"
+            Grid.Row="0"
+            Margin="0,-5,0,3"
+            Padding="10"
+            DisplayMember="DisplayText"
+            HorizontalOptions="CenterAndExpand"
+            IsMultiline="False"
+            ItemsSource="{Binding PredefinedFilters}"
+            SelectedItems="{Binding SelectedFilters, Mode=TwoWay}" />
+        <dxcv:DXCollectionView
+            x:Name="UpcomingJobsListView"
+            Grid.Row="1"
+            FilterString="{Binding Filter, Mode=TwoWay}"
+            FilteringUIFormShowing="OnFilteringUIFormShowing"
+            FilteringUITemplate="{StaticResource filteringUIFormTemplate}"
+            IsEnabled="True"
+            IsLoadMoreEnabled="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+            ItemTemplate="{StaticResource JobCardTemplate}"
+            ItemsSource="{Binding UpcomingJobsList}"
+            LoadMore="UpcomingJobsListView_LoadMore"
+            PullToRefreshCommand="{Binding LoadItemsCommand}" />
+
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <dxcore:DXButton
+                Grid.Column="0"
+                Margin="10"
+                x:DataType="viewmodels:UpcomingJobsViewModel"
+                Clicked="DXButton_Pressed"
+                Content="Refresh"
+                HeightRequest="48" />
+
+            <dxcore:DXButton
+                Grid.Column="1"
+                Margin="10"
+                x:DataType="viewmodels:UpcomingJobsViewModel"
+                Command="{Binding WorkRequestCommand}"
+                Content="Work Request"
+                HeightRequest="48" />
+
+        </Grid>
+    </Grid>
+</ContentPage>

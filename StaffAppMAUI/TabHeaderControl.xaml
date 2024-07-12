@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="CollectionViewFilteringUI.TabHeaderControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxcore="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    x:Name="root">
+    <VerticalStackLayout Padding="0,10">
+        <Border
+            Padding="22,6"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 16,16,16,16">
+            <Border.Triggers>
+                <DataTrigger
+                    Binding="{Binding IsSelected, Source={x:Reference root}}"
+                    TargetType="Border"
+                    Value="True">
+                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SelectedTabHeaderBackgroundColor}, Dark={StaticResource SelectedTabHeaderBackgroundColorDark}}" />
+                </DataTrigger>
+            </Border.Triggers>
+            <dxcore:DXImage
+                x:Name="iconImage"
+                Source="{Binding IconPath, Source={x:Reference root}}"
+                TintColor="{AppThemeBinding Light={StaticResource TabHeaderTextColor},
+                                            Dark={StaticResource TabHeaderTextColorDark}}">
+                <dxcore:DXImage.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsSelected, Source={x:Reference root}}"
+                        TargetType="dxcore:DXImage"
+                        Value="True">
+                        <Setter Property="TintColor" Value="{AppThemeBinding Light={StaticResource SelectedTabHeaderTextColor}, Dark={StaticResource SelectedTabHeaderTextColorDark}}" />
+                    </DataTrigger>
+                </dxcore:DXImage.Triggers>
+            </dxcore:DXImage>
+        </Border>
+        <Label
+            x:Name="captionLabel"
+            FontSize="{OnIdiom Phone=12,
+                               Tablet=14}"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Caption, Source={x:Reference root}}"
+            TextColor="{AppThemeBinding Light={StaticResource TabHeaderTextColor},
+                                        Dark={StaticResource TabHeaderTextColorDark}}">
+            <Label.Triggers>
+                <DataTrigger
+                    Binding="{Binding IsSelected, Source={x:Reference root}}"
+                    TargetType="Label"
+                    Value="True">
+                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SelectedTabHeaderTextColor}, Dark={StaticResource SelectedTabHeaderTextColorDark}}" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+    </VerticalStackLayout>
+
+    <!--<VerticalStackLayout Padding="0,10">
+        <Border StrokeShape="RoundRectangle 16,16,16,16"
+                                    Padding="22,6"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="{Binding IsHomeTabSelected, Converter={StaticResource selectedTabHeaderBackgroundConverter}}">
+            <dxcore:DXImage Source="filteringui_home"
+                                    TintColor="{Binding IsHomeTabSelected, Converter={StaticResource selectedTabHeaderTextColorConverter}}">
+            </dxcore:DXImage>
+        </Border>
+        <Label Text="Home"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    TextColor="{Binding IsHomeTabSelected, Converter={StaticResource selectedTabHeaderTextColorConverter}}"
+                                    FontSize="{OnIdiom Phone=12, Tablet=14}"/>
+    </VerticalStackLayout>-->
+</ContentView>

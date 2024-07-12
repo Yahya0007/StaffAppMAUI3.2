@@ -1,0 +1,592 @@
+<Application
+    x:Class="StaffApp.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxco="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+    xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+    xmlns:dxdf="clr-namespace:DevExpress.Maui.DataForm;assembly=DevExpress.Maui.Editors"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
+    windows:Application.ImageDirectory="Assets">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="Resources/Styles/LightTheme.xaml" />-->
+                <!--<ResourceDictionary Source="Resources/Styles/DarkTheme.xaml" />-->
+
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="GlobalBackgroundColour">#FFFFFF</Color>
+            <Color x:Key="GlobalForegroundColour">#552E5D</Color>
+
+
+            <!--<Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource BackgroundThemeColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>-->
+
+            <!--<Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextThemeColor}" />
+            </Style>-->
+
+            <!--<Style ApplyToDerivedTypes="True" TargetType="Page">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundThemeColor}" />
+            </Style>-->
+
+            <!--<Style x:Key="ShellStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BackgroundThemeColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextThemeColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource TextThemeColor}" />
+                <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisabledColor}" />
+                <Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}" />
+                <Setter Property="Shell.NavBarHasShadow" Value="False" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource TabBarBackgroundColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TabBarForegroundColor}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TabBarTitleColor}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource TabBarUnselectedColor}" />
+            </Style>
+
+            <Style x:Key="ShellStyleiOS" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource BackgroundThemeColor}" />
+            </Style>-->
+
+            <!--<ResourceDictionary>
+                <FontFamily x:Key="ionicons">/Fonts/ionicons-woff.ttf#Ionicons</FontFamily>
+            -->
+            <!--  Add other resources if needed  -->
+            <!--
+            </ResourceDictionary>-->
+
+            <!--<x:String x:Key="ionicons">ionicons</x:String>-->
+            <!--<x:String x:Key="HomeIcon">&#xf30c;</x:String>-->
+
+            <Style x:Key="StyleCollectionView" TargetType="CollectionView" />
+
+            <Style x:Key="StyleCollectionViewdx" TargetType="dxcv:DXCollectionView" />
+
+            <!--<Style x:Key="StyleFeedbackdx" TargetType="dxdf:DataFormView">
+                <Setter Property="EditorLabelColor" Value="{DynamicResource TextThemeColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundThemeColor}"/>
+            </Style>-->
+
+            <!--<Style x:Key="StyleFontMedium" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirHeavy" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#1C1B1F, Dark=#E6E1E5}" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>-->
+
+            <!--<Style x:Key="StyleFontMediumCheck" TargetType="CheckBox">
+                <Setter Property="Color" Value="#552E5D" />
+            </Style>
+
+            <Style x:Key="StyleFontMediumdx" TargetType="dxe:TextEdit">
+                <Setter Property="TextFontFamily" Value="AvenirRegular" />
+            </Style>
+
+            <Style x:Key="StyleFontMediumPassworddx" TargetType="dxe:PasswordEdit">
+                <Setter Property="TextFontFamily" Value="AvenirRegular" />
+            </Style>
+
+            <Style x:Key="StyleFontBold" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirBlack" />
+                <Setter Property="TextColor" Value="{DynamicResource TextThemeColor}" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>-->
+
+            <!--<Style x:Key="StyleFontFlyout" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirRegular" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#9D986E" />
+                <Setter Property="BackgroundColor" Value="#552E5D" />
+            </Style>-->
+
+            <!--<Style TargetType="dxcore:DXButton" x:Key="commandButtonStyle">
+                <Setter Property="TextColor" Value="{StaticResource NavigationBarColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+            </Style>-->
+
+            <!--<Styles.xaml>-->
+
+            <!--<Style TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{dx:ThemeColor Primary}" />
+            </Style>
+
+            <Style TargetType="dxcore:DXButton">
+                <Setter Property="TextColor" Value="{dx:ThemeColor OnPrimary}" />
+                <Setter Property="BackgroundColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="14" />
+            -->
+            <!--<Setter Property="BorderWidth" Value="0"/>-->
+            <!--
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="14,10" />
+                <Setter Property="MinimumHeightRequest" Value="44" />
+                <Setter Property="MinimumWidthRequest" Value="44" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{dx:ThemeColor OnSurface, Alpha=0.38}" />
+                                    <Setter Property="BackgroundColor" Value="{dx:ThemeColor OnSurface, Alpha=0.12}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="CheckBox">
+                <Setter Property="Color" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="MinimumHeightRequest" Value="44" />
+                <Setter Property="MinimumWidthRequest" Value="44" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Color" Value="{dx:ThemeColor OnSurface, Alpha=0.38}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{dx:ThemeColor OnSurface, Alpha=0.38}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PrimaryText" TargetType="Label">
+                <Setter Property="TextColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="SecondaryText" TargetType="Label">
+                <Setter Property="TextColor" Value="{dx:ThemeColor OnSurfaceVariant}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="None" />
+            </Style>
+
+            <Style TargetType="ProgressBar">
+                <Setter Property="ProgressColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="ProgressColor" Value="{dx:ThemeColor OnSurface, Alpha=0.12}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="RefreshView">
+                <Setter Property="RefreshColor" Value="{dx:ThemeColor Primary}" />
+            </Style>
+
+            <Style TargetType="Slider">
+                <Setter Property="MaximumTrackColor" Value="{dx:ThemeColor SurfaceContainerHighest}" />
+                <Setter Property="MinimumTrackColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="ThumbColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="MaximumTrackColor" Value="{dx:ThemeColor OnSurface, Alpha=0.12}" />
+                                    <Setter Property="MinimumTrackColor" Value="{dx:ThemeColor OnSurface, Alpha=0.38}" />
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor OnSurface, Alpha=0.38}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="SwipeItem">
+                <Setter Property="BackgroundColor" Value="{dx:ThemeColor SurfaceContainer}" />
+            </Style>
+
+            <Style x:Key="SwitchStyle-iOS" TargetType="Switch">
+                <Setter Property="OnColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="ThumbColor" Value="{dx:ThemeColor OnPrimary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="OnColor" Value="{dx:ThemeColor OnSurface, Alpha=0.12}" />
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor Surface}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="OnColor" Value="{dx:ThemeColor Primary}" />
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor OnPrimary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor Outline}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SwitchStyle-Android" TargetType="Switch">
+                <Setter Property="OnColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="ThumbColor" Value="{dx:ThemeColor OnPrimary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="OnColor" Value="{dx:ThemeColor SurfaceVariant}" />
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor Outline}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="OnColor" Value="{dx:ThemeColor Primary, Alpha=0.38}" />
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="{dx:ThemeColor Outline}" />
+                                    <Setter Property="OnColor" Value="{dx:ThemeColor SurfaceVariant}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            -->
+            <!--<Style TargetType="Switch">
+                <Style.BasedOn>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="iOS" Value="{StaticResource SwitchStyle-iOS}" />
+                        <On Platform="Android" Value="{StaticResource SwitchStyle-Android}" />
+                    </OnPlatform>
+                </Style.BasedOn>
+            </Style>-->
+            <!--
+
+            <Style ApplyToDerivedTypes="True" TargetType="Page">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BackgroundColor" Value="{dx:ThemeColor Surface}" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" TargetType="Shell">
+                <Setter Property="Shell.BackgroundColor" Value="{dx:ThemeColor Surface}" />
+                <Setter Property="Shell.ForegroundColor" Value="{dx:ThemeColor OnSurfaceVariant}" />
+                <Setter Property="Shell.TitleColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="Shell.NavBarHasShadow" Value="False" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{dx:ThemeColor SurfaceContainer}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{dx:ThemeColor Primary}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{dx:ThemeColor OnSurfaceVariant}" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{dx:ThemeColor Surface}" />
+                <Setter Property="BarTextColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="IconColor" Value="{dx:ThemeColor OnSurfaceVariant}" />
+            </Style>
+
+            <Style TargetType="TabbedPage">
+                <Setter Property="BarBackgroundColor" Value="{dx:ThemeColor Surface}" />
+                <Setter Property="BarTextColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="UnselectedTabColor" Value="{dx:ThemeColor OnSurface}" />
+                <Setter Property="SelectedTabColor" Value="{dx:ThemeColor Primary}" />
+            </Style>
+
+
+
+
+
+            <Color x:Key="BackgroundThemeColor">#F9F6FF</Color>
+            <Color x:Key="NavigationBarColor" x:Uid="Neutral-100">#FFFFFF</Color>
+            <Color x:Key="AccentColor" x:Uid="Primary-40">#6750A4</Color>
+            <Color x:Key="SeparatorColor" x:Uid="NeutralVariant-80">#CAC4D0</Color>
+            <Color x:Key="DividerColor" x:Uid="NeutralVariant-90">#E7E0EC</Color>
+
+            <Color x:Key="DisabledColor" x:Uid="Neutral-10">#C8C8C8</Color>
+
+            <Color x:Key="TextThemeColor" x:Uid="Neutral-10">#1C1B1F</Color>
+            <Color x:Key="TextThemeColorHighlighted" x:Uid="Neutral-90">#000000</Color>
+            <Color x:Key="TextThemeColorReverse" x:Uid="Neutral-10">#E6E1E5</Color>
+            <Color x:Key="TextThemeColorBright" x:Uid="Neutral-90">#1C1B1F</Color>
+            <Color x:Key="DemoHamburgerIconColor" x:Uid="NeutralVariant-30">#49454F</Color>
+            <Color x:Key="SecondaryTextColor" x:Uid="NeutralVariant-30">#49454F</Color>
+            <Color x:Key="NavigationTextColor" x:Uid="Neutral-10">#1C1B1F</Color>
+
+            <Color x:Key="NestedTabViewFavoriteColorNestedTabViewFavoriteColor">#de6d6f</Color>
+            <Color x:Key="NestedTabViewCartColor">#27b24f</Color>
+            <Color x:Key="ReminderButtonBackgroundColor">#2088FF</Color>
+
+            -->
+            <!--<Color x:Key="DisabledColor">#C8C8C8</Color>-->
+            <!--
+
+            <Color x:Key="UnselectedColor">#C8C8C8</Color>
+            <Color x:Key="TabBarBackgroundColor">#F2F2F7</Color>
+            <Color x:Key="TabBarForegroundColor">#6750A4</Color>
+            <Color x:Key="TabBarTitleColor">#6750A4</Color>
+            <Color x:Key="TabBarUnselectedColor">#212121</Color>
+
+            <Color x:Key="ShadowBrushiOS">#212121</Color>
+            <Color x:Key="ShadowBrushAndroid">#212121</Color>
+
+            <Color x:Key="JobCardBackgroundColor">#FAF8FF</Color>
+
+            <Color x:Key="AvatarBorderColor">Transparent</Color>
+            <Color x:Key="SliderMaximumTrackColor-iOS" x:Uid="NeutralVariant-90">#E7E0EC</Color>
+
+            <Color x:Key="CardViewBackgroundColor" x:Uid="SurfaceLight-3">White</Color>
+            <Color x:Key="CardViewHeaderColor" x:Uid="NeutralVariant-90">#E7E0EC</Color>
+
+            <Color x:Key="BadgeThemeColor">#75A450</Color>
+            <Color x:Key="TextHighlightingColor">#FFF27E</Color>
+
+            <Color x:Key="GridCellFontColor" x:Uid="Neutral-10">#1C1B1F</Color>
+            <Color x:Key="GridHorizontalVirtualizationQuarterBarColor">#FFB1C3FF</Color>
+            <Color x:Key="GridHorizontalVirtualizationYearBarColor">Pink</Color>
+
+            <Color x:Key="CalendarDemoBackgroundColor" x:Uid="SurfaceLight-4">#EEE8F4</Color>
+            <Color x:Key="CalendarSpecialDatesSeparatorColor" x:Uid="NeutralVariant-80">#CAC4D0</Color>
+            <Color x:Key="CalendarSpecialDatesHolidayTextColor">#B3261E</Color>
+            <Color x:Key="CalendarSpecialDatesHolidayBackgroundColor">#EFCDCB</Color>
+            <Color x:Key="CalendarInfoPanelTitleColor" x:Uid="NeutralVariant-30">#49454F</Color>
+            <Color x:Key="CalendarSpecialDatesTextColor" x:Uid="NeutralVariant-30">#49454F</Color>
+            <Color x:Key="CalendarSpecialDatesBackgroundColor">#1A000000</Color>
+
+            <Color x:Key="ChartsTabButtonSelectedBackgroundColor">Transparent</Color>
+            <Color x:Key="ChartsTabButtonBackgroundColor" x:Uid="NeutralVariant-99">#FFFBFE</Color>
+            <Color x:Key="ChartsTabButtonBorderColor">Transparent</Color>
+
+            <Color x:Key="PhoneListTabTextColor">#55575c</Color>
+            <Color x:Key="PhoneListTabIconColor">#7c8086</Color>
+            <Color x:Key="PhoneThemeColor">#959aa0</Color>
+
+            <Color x:Key="DrawerTopPanelBorderColor">#dfe5ed</Color>
+
+            <Color x:Key="EditorSettingsSeparatorColor" x:Uid="NeutralVariant-80">#CAC4D0</Color>
+            <Color x:Key="EditorSettingsTextColor">#de000000</Color>
+
+            <Color x:Key="ChoiceChipGroupChipTextColor">#505050</Color>
+            <Color x:Key="ChoiceChipGroupChipBorderColor">#E5E5E1</Color>
+            <Color x:Key="ChoiceChipGroupChipPressedBorderColor">#F5F5F1</Color>
+            <Color x:Key="ChoiceChipGroupChipSelectedBackgroundColor">#DFD8F7</Color>
+            <Color x:Key="ChoiceChipGroupChipPressedBackgroundColor">#CFC8E7</Color>
+
+            <Color x:Key="CollectionViewGrayFontColor" x:Uid="Neutral-40">#605D62</Color>
+            <Color x:Key="CollectionViewBoldGrayFontColor" x:Uid="NeutralVariant-30">#49454F</Color>
+            <Color x:Key="CollectionViewItemBorderColor">#21130230</Color>
+            <Color x:Key="CollectionViewItemFontColor" x:Uid="Neutral-10">#1C1B1F</Color>
+            <Color x:Key="CollectionViewStrikedItemFontColor">#989898</Color>
+            <Color x:Key="CollectionViewUrgentItemBackgroundColor" x:Uid="Secondary-90">#E8DEF8</Color>
+
+            <Color x:Key="CollectionViewPageBackground" x:Uid="PageBackground">#F9F6FF</Color>
+            <Color x:Key="CollectionViewIconColor" x:Uid="Neutral-Variant-30">#49454F</Color>
+            <Color x:Key="CollectionViewUrgentItemTextColor" x:Uid="Secondary-30">#4A4458</Color>
+            <Color x:Key="CompanyTextColor" x:Uid="Neutral-Variant-40">#605D66</Color>
+            <Color x:Key="CollectionViewCardBarColor" x:Uid="Neutral-Variant-20">#FFFFFF</Color>
+            <Color x:Key="CollectionViewFloatingButtonShadowColor">Gray</Color>
+            <Color x:Key="CollectionViewAltText" x:Uid="NeutralVariant-50">#79747E</Color>
+
+            <Color x:Key="HousePriceTextColor">#000000</Color>
+            <Color x:Key="HouseAddressTextColor">#605D66</Color>
+            <Color x:Key="HouseTypeTextColor">#1D1A22</Color>
+            <Color x:Key="HouseCardBackgroundColor">#FAF8FF</Color>
+            <Color x:Key="ToogleFavoriteIconBackgroundColor">#B58392</Color>
+            <Color x:Key="ToogleFavoriteIconStrokeColor">#FFFFFF</Color>
+            <Color x:Key="FavoriteIconBackgroundColor">#FAF8FF</Color>
+            <Color x:Key="FavoriteIconStrokeColor">#B58392</Color>
+            <Color x:Key="SelectedTabHeaderBackgroundColor">#E8DEF8</Color>
+            <Color x:Key="SelectedTabHeaderTextColor">#1C1B1F</Color>
+            <Color x:Key="TabHeaderTextColor">#49454F</Color>
+            <Color x:Key="FormSettingsIconColor">#49454F</Color>
+            <Color x:Key="RegionTextColor">#49454F</Color>
+            <Color x:Key="FilterFormItemEditorBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="FilterFormItemSelectedChipBackgroundColor">#E8DEF8</Color>
+            <Color x:Key="ToolBarItemTextColor">#79747E</Color>
+
+            <Color x:Key="GridCustomAppearanceOddRowBackgroundColor">#F7F7F7</Color>
+            <Color x:Key="GridCustomAppearanceFontColor">#55575C</Color>
+            <Color x:Key="GridCustomAppearancePositiveFontColor">#00AE00</Color>
+            <Color x:Key="GridCustomAppearanceNegativeFontColor">#FF5458</Color>
+
+            <Color x:Key="UnselectedBorderColor">#CAC4D0</Color>
+            <Color x:Key="SelectedPaperSizeColor">#E8DEF8</Color>
+            <Color x:Key="FormatTextColor">#000000</Color>
+
+            -->
+            <!--<Style TargetType="Slider">
+                <Setter Property="ThumbColor" Value="{StaticResource AccentColor}" />
+            </Style>-->
+
+            <!--<Style TargetType="ProgressBar">
+                <Setter Property="ProgressColor" Value="{StaticResource AccentColor}" />
+            </Style>-->
+
+            <!--<Style TargetType="Switch">
+                <Style.BasedOn>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="iOS" Value="{StaticResource SwitchStyle-iOS}" />
+                        <On Platform="Android" Value="{StaticResource SwitchStyle-Android}" />
+                    </OnPlatform>
+                </Style.BasedOn>
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>-->
+
+            <!--<Style TargetType="CheckBox">
+                <Setter Property="Color" Value="{StaticResource AccentColor}" />
+            </Style>-->
+
+            <!--<Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource BackgroundThemeColor}" />
+                <Setter Property="BarTextColor" Value="{StaticResource TextThemeColor}" />
+            </Style>-->
+            <!--
+
+            <Style x:Key="StyleFontNormal" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirRegular" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColor}" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>
+
+            <Style x:Key="StyleFontNormalLarge" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirRegular" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColor}" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+
+            <Style x:Key="StyleFontNormalLargeHighlighted" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirRegular" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColorHighlighted}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style x:Key="StyleFontMedium" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirHeavy" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#1C1B1F, Dark=#E6E1E5}" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>
+
+            -->
+            <!--<Style x:Key="StyleFontMediumCheck" TargetType="CheckBox">
+                <Setter Property="Color" Value="#552E5D" />
+            </Style>-->
+            <!--
+
+            <Style x:Key="StyleFontMediumdx" TargetType="dxe:TextEdit">
+                <Setter Property="TextFontFamily" Value="AvenirRegular" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColor}" />
+            </Style>
+
+            <Style x:Key="StyleFontMediumPassworddx" TargetType="dxe:PasswordEdit">
+                <Setter Property="TextFontFamily" Value="AvenirRegular" />
+            </Style>
+
+            <Style x:Key="StyleFontBold" TargetType="Label">
+                <Setter Property="FontFamily" Value="AvenirBlack" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColor}" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+            -->
+            <!--<Style x:Key="commandButtonStyle" TargetType="dxcore:DXButton">
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColorReverse}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            </Style>-->
+
+            <!--<Style x:Key="commandButtonSmallStyle" >
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColorReverse}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>-->
+
+            <!--  TargetType="dxcore:DXButton"  -->
+            <!--
+
+            <Style x:Key="cardButtonStyle" TargetType="dxcore:DXButton">
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="TextColor" Value="{StaticResource TextThemeColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundThemeColor}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="18" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Shadow">
+                            <On Platform="iOS">
+                                <On.Value>
+                                    <Shadow Brush="{StaticResource ShadowBrushiOS}" Radius="8" />
+                                </On.Value>
+                            </On>
+                            <On Platform="Android">
+                                <On.Value>
+                                    <Shadow Brush="{StaticResource ShadowBrushAndroid}" Radius="8" />
+                                </On.Value>
+                            </On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            -->
+            <!--  TargetType="dxcore:DXButton"  -->
+            <!--
+
+            <Style x:Key="StyleFeedbackdx" TargetType="dxdf:DataFormView">
+                <Setter Property="EditorLabelColor" Value="{StaticResource TextThemeColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundThemeColor}" />
+            </Style>-->
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

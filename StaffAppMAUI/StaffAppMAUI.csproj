@@ -1,0 +1,589 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+		<!--<Nullable>enable</Nullable>-->
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>StaffApp</RootNamespace>
+		<MtouchUseLlvm>true</MtouchUseLlvm>
+		<MtouchLink>None</MtouchLink>
+		<TrimMode>partial</TrimMode>
+		<!-- Display name -->
+		<ApplicationTitle>My Staff App 3.0</ApplicationTitle>
+		<!-- App Identifier -->
+		<ApplicationId>uk.co.mycompany.staffapp35</ApplicationId>
+		<!--<ApplicationIdGuid>BE6FAE6D-64B8-4F12-9119-330A0E5117C3</ApplicationIdGuid>-->
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>8</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">25.0</SupportedOSPlatformVersion>
+		<UseInterpreter Condition="$(TargetFramework.Contains('-ios')) AND '$(Configuration)' == 'Release'">True</UseInterpreter>
+		<!--    <PackageIcon>ic_launcher.png</PackageIcon><Title>My Staff App 3.0</Title><Description>My Staff App 3.0</Description><Copyright>(c) 2023 Information Vision</Copyright>-->
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Configurations>Release;Debug</Configurations>
+		<Title>My Staff App 3.5</Title>
+		<Platforms>AnyCPU;ARM64;x64</Platforms>
+	</PropertyGroup>
+	<PropertyGroup>
+		<UseShortFileNames>True</UseShortFileNames>
+	</PropertyGroup>
+	<!--<PropertyGroup>
+		<UseInterpreter>true</UseInterpreter>
+	</PropertyGroup>-->
+	<!--<PropertyGroup>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    -->
+	<!-- Only needed when you have a need for entitlements -->
+	<!--
+    -->
+	<!-- <CodesignEntitlement>Entitlements.plist</CodesignEntitlement> -->
+	<!--
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net8.0-ios'">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    -->
+	<!-- Only needed when you have a need for entitlements -->
+	<!--
+    -->
+	<!-- <CodesignEntitlement>Entitlements.plist</CodesignEntitlement> -->
+	<!--
+  </PropertyGroup>-->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+		<UseInterpreter>true</UseInterpreter>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+		<CodesignProvision>Automatic</CodesignProvision>
+		<CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+		<CodesignKey>My Company Staff App 35</CodesignKey>
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<MtouchExtraArgs>--linkskip=DevExpress.Data --linkskip=DevExpress.Maui.CollectionView --linkskip=DevExpress.Maui.Controls --DevExpress.Maui.Editors --linkskip=AutoMapper</MtouchExtraArgs>
+		<UseInterpreter>true</UseInterpreter>
+		<MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+	</PropertyGroup>
+	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+    <CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey>
+    <CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision>
+  </PropertyGroup>-->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<Optimize>False</Optimize>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|x64'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<Optimize>False</Optimize>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<Optimize>False</Optimize>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>False</AndroidUseAapt2>
+		<Optimize>False</Optimize>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|x64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>False</AndroidUseAapt2>
+		<Optimize>False</Optimize>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>False</AndroidUseAapt2>
+		<Optimize>False</Optimize>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|x64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<BuildIpa>False</BuildIpa>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<MtouchNoSymbolStrip>True</MtouchNoSymbolStrip>
+		<OptimizePNGs>True</OptimizePNGs>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchProfiling>True</MtouchProfiling>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|x64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|ARM64'">
+		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationTitle>My Staff App 3.5</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0.32</ApplicationDisplayVersion>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<PublishTrimmed>False</PublishTrimmed>
+		<RunAOTCompilation>False</RunAOTCompilation>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<!-- Configure Sentry org and project -->
+		<SentryOrg>hs-fedf0cbef</SentryOrg>
+		<SentryProject>dotnet-maui</SentryProject>
+		<!--
+    Each of the below features are opt-in.
+    Enable the features you wish to use.
+  -->
+		<!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+		<SentryUploadSymbols>true</SentryUploadSymbols>
+		<!-- Sends sources to Sentry, enabling display of source context. -->
+		<SentryUploadSources>true</SentryUploadSources>
+		<!-- If you are targeting Android, sends proguard mapping file to Sentry. -->
+		<!--<SentryUploadAndroidProguardMapping>true</SentryUploadAndroidProguardMapping>-->
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+		<ProvisioningType>automatic</ProvisioningType>
+		<CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey>
+		<CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
+	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+    <ProvisioningType>automatic</ProvisioningType>
+    <CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey>
+    <CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision>
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+    <CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey>
+    <CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision>
+  </PropertyGroup>-->
+	<!--  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'"><ApplicationTitle>My Staff App 3.0</ApplicationTitle><ApplicationId>uk.co.mycompany.staffapp35</ApplicationId><CreatePackage>false</CreatePackage></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android33.0|AnyCPU'"><ApplicationTitle>My Staff App 3.0</ApplicationTitle><ApplicationId>uk.co.mycompany.staffapp35</ApplicationId><ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion><ApplicationVersion>2</ApplicationVersion></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'"><ApplicationTitle>My Staff App 3.0</ApplicationTitle><ApplicationId>uk.co.mycompany.staffapp35</ApplicationId><MtouchLink>SdkOnly</MtouchLink><ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion><ApplicationVersion>2</ApplicationVersion><CreatePackage>false</CreatePackage></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android33.0|AnyCPU'"><ApplicationTitle>My Staff App 3.0</ApplicationTitle><ApplicationId>uk.co.mycompany.staffapp35</ApplicationId><ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion><ApplicationVersion>2</ApplicationVersion></PropertyGroup><PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'"><RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    Only needed when you have a need for entitlements
+
+    <CodesignEntitlement>Entitlements.plist</CodesignEntitlement>
+	<CodesignProvision>iosmauisigning</CodesignProvision></PropertyGroup><PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'"><CodesignKey>iPhone Distribution</CodesignKey><CodesignProvision>My Staff App 3.0</CodesignProvision><ProvisioningType>manual</ProvisioningType></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'"><ForceSimulatorX64ArchitectureInIDE>true</ForceSimulatorX64ArchitectureInIDE><ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion><ApplicationVersion>2</ApplicationVersion></PropertyGroup><PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'"><ProvisioningType>automatic</ProvisioningType><CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision><CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey></PropertyGroup><PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios' and '$(Configuration)' == 'Debug'"><CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey><CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision><ProvisioningType>automatic</ProvisioningType></PropertyGroup><PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'"><ProvisioningType>automatic</ProvisioningType><CodesignKey>Apple Development: wererer erererewr (25D5FFUA6W)</CodesignKey><CodesignProvision>VS: uk.co.mycompany.staffapp35 Development</CodesignProvision></PropertyGroup><PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "><DebugSymbols>true</DebugSymbols><WarningLevel>4</WarningLevel><PlatformTarget>anycpu</PlatformTarget></PropertyGroup>-->
+	<!--<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>anycpu</PlatformTarget>
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <CreatePackage>false</CreatePackage>
+    <ApplicationId>uk.co.mycompany.staffapp35</ApplicationId>
+    <ApplicationVersion>6</ApplicationVersion>
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+		<CodesignProvision>Automatic</CodesignProvision>
+		<CodesignKey>iPhone Distribution</CodesignKey>
+	</PropertyGroup>-->
+	<!-- 
+  This target ensures that iOS Frameworks and XCFrameworks are collected from NuGet packages when using Hot Restart.
+  _UnpackHotRestartFrameworkAssemblies doesn't work for NuGet packages, because the frameworks aren't stored as embedded resources, but just files in the package. 
+-->
+	<Target Name="_CollectHotRestartFrameworksFromPackages" BeforeTargets="_CollectHotRestartFrameworks" Condition="'$(IsHotRestartBuild)' == 'true'">
+		<!-- 
+    Find all resources within NuGet packages.
+    For example, a package with assembly Foo.dll will have an adjacent Foo.resources folder or a Foo.resources.zip file.
+  -->
+		<ItemGroup>
+			<_PackageResourcesDirs Include="@(AssembliesWithFrameworks -> '%(RootDir)%(Directory)%(FileName).resources')" Condition="Exists('%(RootDir)%(Directory)%(FileName).resources')" />
+			<_PackageResourcesZips Include="@(AssembliesWithFrameworks -> '%(RootDir)%(Directory)%(FileName).resources.zip')" Condition="Exists('%(RootDir)%(Directory)%(FileName).resources.zip')" />
+		</ItemGroup>
+		<!-- 
+    For zipped resources, we'll need to unpack them somewhere.
+    The DeviceSpecificIntermediateOutputPath can get too long and hit max path, so we'll work from TEMP instead.
+  -->
+		<PropertyGroup>
+			<HotRestartPackageResourcesDir>$(TEMP)\Xamarin\HotRestart\Resources\</HotRestartPackageResourcesDir>
+		</PropertyGroup>
+		<Unzip ZipFilePath="@(_PackageResourcesZips)" ExtractionPath="$(HotRestartPackageResourcesDir)%(NuGetPackageId)\%(NuGetPackageVersion)" Condition="'@(_PackageResourcesZips)' != '' And !Exists('$(HotRestartPackageResourcesDir)%(NuGetPackageId)\%(NuGetPackageVersion)')" />
+		<!-- Add the folders where we unzipped each file to _PackageResourcesDirs -->
+		<ItemGroup Condition="'@(_PackageResourcesZips)' != ''">
+			<_PackageResourcesDirs Include="@(_PackageResourcesZips -> '$(HotRestartPackageResourcesDir)%(NuGetPackageId)\%(NuGetPackageVersion)')" />
+		</ItemGroup>
+		<!-- If we have any _PackageResourcesDirs (from either originally zipped or unzipped), scan them for frameworks. -->
+		<ItemGroup Condition="'@(_PackageResourcesDirs)' != ''">
+			<!-- Regular frameworks will be found immediately in the root of the resources folder.  -->
+			<_PackageResourcesFrameworkFiles Include="%(_PackageResourcesDirs.Identity)\*.framework\*" />
+			<!-- XCFrameworks will have multiple targets.  We need only the framework from the ios-arm64 target.  -->
+			<_PackageResourcesFrameworkFiles Include="%(_PackageResourcesDirs.Identity)\**\*.xcframework\ios-arm64\*.framework\*" />
+			<!-- Condense the file list to the exact list of frameworks we're adding. -->
+			<_HotRestartFrameworksFromPackages Include="@(_PackageResourcesFrameworkFiles -> '%(RootDir)%(Directory)')" KeepDuplicates="false" />
+			<!-- Finally, add them to _HotRestartFrameworks, which is used by the existing _CollectHotRestartFrameworks target. -->
+			<_HotRestartFrameworks Include="@(_HotRestartFrameworksFromPackages -&gt; TrimEnd('\'))" />
+		</ItemGroup>
+	</Target>
+	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>My Company Staff App 35</CodesignProvision>
+    <ProvisioningType>manual</ProvisioningType>
+  </PropertyGroup>-->
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+    <ApplicationId>uk.co.mycompany.staffapp35</ApplicationId>
+    <ApplicationVersion>6</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+    <ApplicationId>uk.co.mycompany.staffapp35</ApplicationId>
+    <ApplicationVersion>6</ApplicationVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+    <ApplicationId>uk.co.mycompany.staffapp35</ApplicationId>
+    <ApplicationVersion>6</ApplicationVersion>
+  </PropertyGroup>-->
+	<!-- We recommend only using these features for release builds. -->
+	<!--<PropertyGroup Condition="'$(Configuration)' == 'Release'">-->
+	<PropertyGroup>
+		<!-- Configure Sentry org and project -->
+		<SentryOrg>hs-fedf0cbef</SentryOrg>
+		<SentryProject>dotnet-maui</SentryProject>
+		<!--
+    Each of the below features are opt-in.
+    Enable the features you wish to use.
+  -->
+		<!-- Sends symbols to Sentry, enabling symbolication of stack traces. -->
+		<SentryUploadSymbols>true</SentryUploadSymbols>
+		<!-- Sends sources to Sentry, enabling display of source context. -->
+		<SentryUploadSources>true</SentryUploadSources>
+		<!-- If you are targeting Android, sends proguard mapping file to Sentry. -->
+		<SentryUploadAndroidProguardMapping>true</SentryUploadAndroidProguardMapping>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\ic_launcher.png" Color="#5B27D9">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiIcon>
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\googlestoreapplogo.jpg" BaseSize="64,64" Color="White">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiSplashScreen>
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Platforms\Android\Resources\Fonts\**" />
+		<Compile Remove="Resources\Fonts\bin1\**" />
+		<Compile Remove="Resources\Styles\Archive\**" />
+		<EmbeddedResource Remove="Platforms\Android\Resources\Fonts\**" />
+		<EmbeddedResource Remove="Resources\Fonts\bin1\**" />
+		<EmbeddedResource Remove="Resources\Styles\Archive\**" />
+		<MauiCss Remove="Platforms\Android\Resources\Fonts\**" />
+		<MauiCss Remove="Resources\Fonts\bin1\**" />
+		<MauiCss Remove="Resources\Styles\Archive\**" />
+		<MauiFont Remove="Resources\Fonts\bin1\**" />
+		<MauiXaml Remove="Platforms\Android\Resources\Fonts\**" />
+		<MauiXaml Remove="Resources\Fonts\bin1\**" />
+		<MauiXaml Remove="Resources\Styles\Archive\**" />
+		<None Remove="Platforms\Android\Resources\Fonts\**" />
+		<None Remove="Resources\Fonts\bin1\**" />
+		<None Remove="Resources\Styles\Archive\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="App - Copy.xaml.cs" />
+		<Compile Remove="Controls\DockLayout.cs" />
+		<Compile Remove="Controls\IconView.xaml.cs" />
+		<Compile Remove="Controls\NonSelectableListView.cs" />
+		<Compile Remove="Converter\_Converters.cs" />
+		<Compile Remove="Library\Utilities.cs" />
+		<Compile Remove="ModelBase\XpoViewModel.cs" />
+		<Compile Remove="Resources\OldStyles.xaml.cs" />
+		<Compile Remove="Services\WebAPIService.cs" />
+		<Compile Remove="ViewModels\AboutViewModel.cs" />
+		<Compile Remove="ViewModels\ChartsViewModel.cs" />
+		<Compile Remove="ViewModels\DataGridViewModel.cs" />
+		<Compile Remove="ViewModels\ItemsViewModel.cs" />
+		<Compile Remove="ViewModels\LoadingViewModel.cs" />
+		<Compile Remove="ViewModels\PopupViewModel.cs" />
+		<Compile Remove="ViewModels\SchedulerViewModel.cs" />
+		<Compile Remove="ViewModels\TeamViewModel.cs" />
+		<Compile Remove="ViewModels\UpcomingJobsCalendarViewModel.cs" />
+		<Compile Remove="Views\AboutPage.xaml.cs" />
+		<Compile Remove="Views\BookedJobsPage - Copy.xaml.cs" />
+		<Compile Remove="Views\ChartsPage.xaml.cs" />
+		<Compile Remove="Views\DataGridPage.xaml.cs" />
+		<Compile Remove="Views\ItemsPage.xaml.cs" />
+		<Compile Remove="Views\LoadingPage.xaml.cs" />
+		<Compile Remove="Views\MauiPage1.xaml.cs" />
+		<Compile Remove="Views\NewsPage.xaml.cs" />
+		<Compile Remove="Views\PopupPage.xaml.cs" />
+		<Compile Remove="Views\SchedulerPage.xaml.cs" />
+		<Compile Remove="Views\StaffAvailabilityPage.xaml.cs" />
+		<Compile Remove="Views\TeamPage.xaml.cs" />
+		<Compile Remove="Views\UpcomingJobsCalendarPage.xaml.cs" />
+		<Compile Remove="Views\UpcomingJobsWeekPage - Copy %282%29.xaml.cs" />
+		<Compile Remove="Views\UpcomingJobsWeekPage - Copy.xaml.cs" />
+	</ItemGroup>
+	<!--<ItemGroup>
+		<MauiFont Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+		<MauiFont Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+		<MauiFont Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+		<MauiFont Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+	</ItemGroup>-->
+	<ItemGroup>
+		<MauiXaml Remove="App - Copy.xaml" />
+		<MauiXaml Remove="Controls\IconView.xaml" />
+		<MauiXaml Remove="Resources\OldStyles.xaml" />
+		<!--<MauiXaml Remove="Resources\Styles.xaml" />-->
+		<MauiXaml Remove="Resources\Styles\_Styles.xaml" />
+		<MauiXaml Remove="Views\AboutPage.xaml" />
+		<MauiXaml Remove="Views\BookedJobsPage - Copy.xaml" />
+		<MauiXaml Remove="Views\ChartsPage.xaml" />
+		<MauiXaml Remove="Views\DataGridPage.xaml" />
+		<MauiXaml Remove="Views\ItemsPage.xaml" />
+		<MauiXaml Remove="Views\LoadingPage.xaml" />
+		<MauiXaml Remove="Views\MauiPage1.xaml" />
+		<MauiXaml Remove="Views\NewsPage.xaml" />
+		<MauiXaml Remove="Views\PopupPage.xaml" />
+		<MauiXaml Remove="Views\SchedulerPage.xaml" />
+		<MauiXaml Remove="Views\StaffAvailabilityPage.xaml" />
+		<MauiXaml Remove="Views\TeamPage.xaml" />
+		<MauiXaml Remove="Views\UpcomingJobsCalendarPage.xaml" />
+		<MauiXaml Remove="Views\UpcomingJobsWeekPage - Copy %282%29.xaml" />
+		<MauiXaml Remove="Views\UpcomingJobsWeekPage - Copy.xaml" />
+	</ItemGroup>
+	<!--<ItemGroup>
+		<None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+		<None Remove="Resources\appicon.svg" />
+		<None Remove="Resources\appiconfg.svg" />
+		<None Remove="Resources\Fonts\Avenir Light.ttf" />
+		<None Remove="Resources\Fonts\ionicons-woff.ttf" />
+		<None Remove="Resources\Fonts\Avenir Black.ttf" />
+		<None Remove="Resources\Fonts\Avenir Heavy.ttf" />
+		<None Remove="Resources\Fonts\Avenir Light.ttf" />
+		<None Remove="Resources\Fonts\Avenir Regular.ttf" />
+		<None Remove="Resources\Fonts\Berthold Baskerville Bold.ttf" />
+		<None Remove="Resources\Fonts\Berthold Baskerville Medium Italic.ttf" />
+		<None Remove="Resources\Fonts\Berthold Baskerville Regular.ttf" />
+		<None Remove="Resources\Fonts\ionicons-woff.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+		<None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+		<None Remove="Resources\Fonts\OpenSans-Regular.ttf" />
+		<None Remove="Resources\Fonts\roboto-bold.ttf" />
+		<None Remove="Resources\Fonts\roboto-medium.ttf" />
+		<None Remove="Resources\Fonts\roboto-regular.ttf" />
+		<None Remove="Resources\Fonts\univia-pro-medium.ttf" />
+		<None Remove="Resources\Fonts\univia-pro-regular.ttf" />
+		<None Remove="Resources\Images\filteringui_filter.svg" />
+		<None Remove="Resources\Images\filteringui_home.svg" />
+		<None Remove="Resources\Images\filteringui_like.svg" />
+		<None Remove="Resources\Images\filteringui_like2.svg" />
+		<None Remove="Resources\Images\filteringui_like_disabled.svg" />
+		<None Remove="Resources\Images\filteringui_location.svg" />
+		<None Remove="Resources\Images\filteringui_location_small.svg" />
+		<None Remove="Resources\Images\googlestoreapplogo.jpg" />
+		<None Remove="Resources\Images\googlestorefeatured.png" />
+		<None Remove="Resources\Images\palette.svg" />
+		<None Remove="ViewModels\efnyanec.gxp~" />
+		<None Remove="Resources\Images\logo.png" />
+		<None Remove="Resources\Images\_logo.png" />
+		<None Remove="Resources\splash.svg" />
+		<None Remove="Resources\Splash\googlestoreapplogo.jpg" />
+		<None Remove="Resources\_splash.svg" />
+	</ItemGroup>-->
+	<ItemGroup>
+		<BundleResource Include="Platforms\Android\Resources\xml\network_security_config.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<BundleResource Include="GoogleService-Info.plist" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="DevExpress.Data" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.CollectionView" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.Controls" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.Core" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.Editors" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.HtmlEditor" Version="24.1.3" />
+		<PackageReference Include="DevExpress.Maui.Scheduler" Version="24.1.3" />
+		<PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.61.3" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.70" />
+		<PackageReference Include="Sentry" Version="4.9.0" />
+		<PackageReference Include="Sentry.Extensions.Logging" Version="4.9.0" />
+		<PackageReference Include="Sentry.Maui" Version="4.9.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
+		<PackageReference Include="Shiny.Core" Version="3.3.3" />
+		<PackageReference Include="Shiny.Extensions.Push" Version="1.1.0.60" />
+		<PackageReference Include="Shiny.Hosting.Maui" Version="3.3.3" />
+		<PackageReference Include="Shiny.Notifications" Version="3.3.3" />
+		<PackageReference Include="Shiny.Push" Version="3.3.3" />
+		<PackageReference Include="Shiny.Push.FirebaseMessaging" Version="3.3.3" />
+		<!--<PackageReference Include="Shiny.Push.Firebase" Version="3.2.3" />-->
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3" />
+	</ItemGroup>
+	<ItemGroup>
+		<MauiXaml Update="Controls\TitleView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\Colors.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\Styles.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="TabHeaderControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\UpcomingJobsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<GoogleServicesJson Include="Platforms\Android\google-services.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="DevExpress.Maui.Controls" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiFont Update="Resources\Fonts\Avenir Black.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Avenir Heavy.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Avenir Light.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Avenir Regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Berthold Baskerville Bold.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Berthold Baskerville Medium Italic.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Berthold Baskerville Regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\ionicons-woff.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\OpenSans-Regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\roboto-bold.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\roboto-medium.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\roboto-regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\univia-pro-medium.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\univia-pro-regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiFont>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Library\" />
+	  <Folder Include="Resources\AppIcon\" />
+	</ItemGroup>
+
+	<!--<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+	  <PackageReference Include="Xamarin.GooglePlayServices.Basement">
+	    <Version>118.2.0.5</Version>
+	  </PackageReference>
+	</ItemGroup>-->
+
+	<!--<ItemGroup><MauiSplashScreen Include="Resources\Splash\googlestoreapplogo.jpg" BaseSize="64,64" Color="White" /></ItemGroup>-->
+	<!--<ItemGroup><MauiIcon Include="Resources\ic_launcher.png" /></ItemGroup>-->
+	<!--<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'"><MauiIcon Include="Resources\ic_launcher.png" ForegroundFile="Resources\ic_launcher.png" Color="#5B27D9" /><MauiSplashScreen Include="Resources\Splash\googlestoreapplogo.jpg" BaseSize="64,64" Color="White" /></ItemGroup><ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'"><MauiIcon Include="Resources\ic_launcher.png" ForegroundFile="Resources\ic_launcher.png" Color="#5B27D9" /><MauiSplashScreen Include="Resources\Splash\googlestoreapplogo.jpg" BaseSize="64,64" Color="White" /></ItemGroup><ItemGroup><MauiIcon Include="Resources\ic_launcher.png" ForegroundFile="Resources\ic_launcher.png" Color="#5B27D9" /><MauiSplashScreen Include="Resources\Splash\googlestoreapplogo.jpg" BaseSize="64,64" Color="White" /></ItemGroup>-->
+	<!--<ItemGroup><None Update="Resources\ic_launcher.png"><Pack>True</Pack><PackagePath>\</PackagePath></None></ItemGroup>-->
+</Project>
